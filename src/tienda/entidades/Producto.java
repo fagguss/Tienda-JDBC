@@ -1,14 +1,11 @@
-
-
 package tienda.entidades;
 
-
 public class Producto {
-    
-    private int codigo; 
-    private String nombre; 
-    private float precio; 
-    private Fabricante fabricante; 
+
+    private int codigo;
+    private String nombre;
+    private float precio;
+    private Fabricante fabricante;
 
     public Producto() {
     }
@@ -27,8 +24,6 @@ public class Producto {
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }
-
-
 
     public int getCodigo() {
         return codigo;
@@ -54,7 +49,10 @@ public class Producto {
         this.precio = precio;
     }
 
-  
-    
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", fabricante=" + fabricante + '}';
+    }
+
     
 }

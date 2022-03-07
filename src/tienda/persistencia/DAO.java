@@ -10,9 +10,9 @@ import java.sql.Statement;
 
 public abstract class DAO {
     
-    protected Connection conexion;
-    protected ResultSet resultado;
-    protected Statement sentencia;
+    protected Connection conexion=null;
+    protected ResultSet resultado=null;
+    protected Statement sentencia=null;
     private final String USER = "root";
     private final String PASSWORD = "root";
     private final String DATABASE = "tienda";
@@ -22,7 +22,7 @@ public abstract class DAO {
         try {
             Class.forName(DRIVER);
             String urlBaseDeDatos = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false";
-            conexion = DriverManager.getConnection(USER, urlBaseDeDatos, DRIVER);
+            conexion = DriverManager.getConnection(urlBaseDeDatos,USER, PASSWORD);
         } catch (ClassNotFoundException | SQLException ex) {
             throw ex;
         }
