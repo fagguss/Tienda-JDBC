@@ -11,10 +11,21 @@ public class ProductoServicio {
 
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
+    public ProductoServicio() {
+        this.productoDAO= new ProductoDAO();
+    }
+    
+    
     public Collection<Producto> listarProductos() throws Exception {
 
         try {
             Collection<Producto> productos = productoDAO.listarProductos();
+            
+            System.out.println("Los productos son: ");
+            for (Producto producto : productos) {
+                System.out.println(producto.toString());
+            }
+            
             return productos;
         } catch (Exception e) {
             throw e;
@@ -26,6 +37,12 @@ public class ProductoServicio {
 
         try {
             Collection<Producto> productos = productoDAO.listarProductosPorNombreYPrecio();
+            
+            System.out.println("Los productos son: ");
+            for (Producto producto : productos) {
+                System.out.println("nombre= " +producto.getNombre()+", precio=" +producto.getPrecio());
+            }
+            
             return productos;
         } catch (Exception e) {
             throw e;
@@ -69,7 +86,7 @@ public class ProductoServicio {
 
     }
 
-    public void ingresarProducto() throws Exception {
+     public void ingresarProducto() throws Exception {
 
         try {
             Producto producto = new Producto();

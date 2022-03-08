@@ -8,7 +8,13 @@ import tienda.servicios.FabricanteServicio;
 
 public final class ProductoDAO extends DAO {
 
-    private FabricanteServicio fabricanteServis;
+    private FabricanteServicio fabricanteServicio; 
+
+    public ProductoDAO() {
+        this.fabricanteServicio=new FabricanteServicio(); 
+    }
+    
+    
 
     public void guardarProducto(Producto producto) throws Exception {
         try {
@@ -75,7 +81,7 @@ public final class ProductoDAO extends DAO {
                 producto.setNombre(resultado.getString(2));
                 producto.setPrecio(resultado.getFloat(3));
                 Integer codigo_fabricante = resultado.getInt(4);
-                Fabricante fabricante = fabricanteServis.buscarFabricanteXCodigo(codigo_fabricante);
+                Fabricante fabricante = fabricanteServicio.buscarFabricanteXCodigo(codigo_fabricante);
                 producto.setFabricante(fabricante);
 
                 productos.add(producto);
@@ -149,7 +155,7 @@ public final class ProductoDAO extends DAO {
 
     public Collection<Producto> listarProductos() throws Exception {
         try {
-            String sql = "SELECT codigo, nombre, precio, codigo_fabricamte FROM producto ";
+            String sql = "SELECT codigo, nombre, precio, codigo_fabricante FROM producto; ";
 
             consultarBase(sql);
 
@@ -161,7 +167,7 @@ public final class ProductoDAO extends DAO {
                 producto.setNombre(resultado.getString(2));
                 producto.setPrecio(resultado.getFloat(3));
                 Integer codigo_fabricante = resultado.getInt(4);
-                Fabricante fabricante = fabricanteServis.buscarFabricanteXCodigo(codigo_fabricante);
+                Fabricante fabricante = fabricanteServicio.buscarFabricanteXCodigo(codigo_fabricante);
                 producto.setFabricante(fabricante);
 
                 productos.add(producto);
@@ -193,7 +199,7 @@ public final class ProductoDAO extends DAO {
 
     public Collection<Producto> listarProductosPorNombreYPrecio() throws Exception {
         try {
-            String sql = "SELECT nombre, precio FROM producto ";
+            String sql = "SELECT nombre, precio FROM producto ;";
 
             consultarBase(sql);
 

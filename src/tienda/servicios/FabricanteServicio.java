@@ -1,5 +1,6 @@
 package tienda.servicios;
 
+
 import tienda.entidades.Fabricante;
 import tienda.persistencia.FabricanteDAO;
 
@@ -7,6 +8,11 @@ public class FabricanteServicio {
 
     private FabricanteDAO fabricanteDAO;
 
+    public FabricanteServicio() {
+        this.fabricanteDAO=new FabricanteDAO();
+    }
+
+    
     public Fabricante buscarFabricanteXCodigo(Integer codigo) throws Exception {
 
         try {
@@ -14,8 +20,8 @@ public class FabricanteServicio {
             if (codigo == null) {
                 throw new Exception("Debe indicar el codigo del fabricante");
             }
+            Fabricante fabricante=fabricanteDAO.buscarFabricanteXCodigo(codigo);
             
-            Fabricante fabricante = fabricanteDAO.buscarFabricanteXCodigo(codigo);
             return fabricante;
             
         } catch (Exception ex) {

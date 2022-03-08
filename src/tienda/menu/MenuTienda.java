@@ -5,7 +5,14 @@ import tienda.servicios.ProductoServicio;
 
 public class MenuTienda {
 
-    public void MenuTienda() throws Exception {
+    private ProductoServicio productoServicio; 
+
+    public MenuTienda() {
+        this.productoServicio=new ProductoServicio(); 
+    }
+    
+    
+    public ProductoServicio MenuTienda() throws Exception {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
         try {
@@ -24,32 +31,32 @@ public class MenuTienda {
                         + "9.Finalizar.");
                 System.out.print("Elige una opcion que desea realizar: ");
                 opc = leer.nextInt();
-                
-                ProductoServicio productoServicio = null;
-                
+
+//                ProductoServicio productoServicio = null;
+
                 switch (opc) {
                     case 1:
-                        productoServicio=new ProductoServicio(); 
+//                        productoServicio = new ProductoServicio();
                         productoServicio.listarProductos();
                         break;
                     case 2:
-                        productoServicio=new ProductoServicio();
+//                        productoServicio = new ProductoServicio();
                         productoServicio.listarProductosPorNombreYPrecio();
                         break;
                     case 3:
-                        productoServicio=new ProductoServicio();
-                        productoServicio.buscarProductosXPrecioEntre(); 
+//                        productoServicio = new ProductoServicio();
+                        productoServicio.buscarProductosXPrecioEntre();
                         break;
                     case 4:
-                        productoServicio=new ProductoServicio();
-                        productoServicio.buscarProductoXNommbre(); 
+//                        productoServicio = new ProductoServicio();
+                        productoServicio.buscarProductoXNommbre();
                         break;
                     case 5:
-                        productoServicio=new ProductoServicio();
+//                        productoServicio = new ProductoServicio();
                         productoServicio.buscarProductosXPrecioMenor();
                         break;
                     case 6:
-                        productoServicio=new ProductoServicio();
+//                        productoServicio = new ProductoServicio();
                         productoServicio.ingresarProducto();
                         break;
                     case 7:
@@ -59,8 +66,8 @@ public class MenuTienda {
                     case 9:
                         break;
                 }
-
-            } while (opc != 9);
+                return productoServicio;
+            } while (opc > 9);
 
         } catch (Exception e) {
             throw e;

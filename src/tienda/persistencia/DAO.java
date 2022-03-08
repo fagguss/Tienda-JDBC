@@ -10,13 +10,18 @@ import java.sql.Statement;
 
 public abstract class DAO {
     
-    protected Connection conexion=null;
-    protected ResultSet resultado=null;
-    protected Statement sentencia=null;
+    protected Connection conexion;
+    protected ResultSet resultado;
+    protected Statement sentencia;
     private final String USER = "root";
     private final String PASSWORD = "root";
     private final String DATABASE = "tienda";
     private final String DRIVER = "com.mysql.jdbc.Driver";
+
+//    public DAO() {
+//    }
+//    
+    
     
       protected void conectarBase() throws Exception {
         try {

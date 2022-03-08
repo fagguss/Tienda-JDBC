@@ -8,6 +8,11 @@ import tienda.entidades.Fabricante;
 
 
 public final class FabricanteDAO extends DAO {
+
+    
+//    public FabricanteDAO() {
+//    }
+//    
     
      public void guardarFabricante(Fabricante fabricante) throws Exception {
         try {
@@ -85,8 +90,8 @@ public final class FabricanteDAO extends DAO {
     public Fabricante buscarFabricanteXCodigo(Integer codigo) throws Exception {
         try {
 
-            String sql = "SELECT * FROM fabricante "
-                    + " WHERE codigo = '" + codigo + "'";
+            String sql = "SELECT codigo, nombre FROM fabricante "
+                    + " WHERE codigo = '" + codigo + "';";
 
             consultarBase(sql);
 
