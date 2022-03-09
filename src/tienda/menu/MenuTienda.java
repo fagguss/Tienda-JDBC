@@ -1,17 +1,19 @@
 package tienda.menu;
 
 import java.util.Scanner;
+import tienda.servicios.FabricanteServicio;
 import tienda.servicios.ProductoServicio;
 
 public class MenuTienda {
 
-    private ProductoServicio productoServicio; 
+    private ProductoServicio productoServicio;
+    private FabricanteServicio fabricanteServicio;
 
     public MenuTienda() {
-        this.productoServicio=new ProductoServicio(); 
+        this.productoServicio = new ProductoServicio();
+        this.fabricanteServicio = new FabricanteServicio();
     }
-    
-    
+
     public ProductoServicio MenuTienda() throws Exception {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
@@ -32,42 +34,45 @@ public class MenuTienda {
                 System.out.print("Elige una opcion que desea realizar: ");
                 opc = leer.nextInt();
 
-//                ProductoServicio productoServicio = null;
-
                 switch (opc) {
                     case 1:
-//                        productoServicio = new ProductoServicio();
+                        System.out.println("");
                         productoServicio.listarProductos();
                         break;
                     case 2:
-//                        productoServicio = new ProductoServicio();
+                        System.out.println("");
                         productoServicio.listarProductosPorNombreYPrecio();
                         break;
                     case 3:
-//                        productoServicio = new ProductoServicio();
+                        System.out.println("");
                         productoServicio.buscarProductosXPrecioEntre();
                         break;
                     case 4:
-//                        productoServicio = new ProductoServicio();
+                        System.out.println("");
                         productoServicio.buscarProductoXNommbre();
                         break;
                     case 5:
-//                        productoServicio = new ProductoServicio();
+                        System.out.println("");
                         productoServicio.buscarProductosXPrecioMenor();
                         break;
                     case 6:
-//                        productoServicio = new ProductoServicio();
+                        System.out.println("");
                         productoServicio.ingresarProducto();
                         break;
                     case 7:
+                        System.out.println("");
+                        fabricanteServicio.ingresarFabricante();
                         break;
                     case 8:
+                        System.out.println("");
+                        productoServicio.editarProducto();
                         break;
                     case 9:
+                        System.out.println("Hasta luego, finalizo operacion :)");
                         break;
                 }
                 return productoServicio;
-            } while (opc > 9);
+            } while (opc != 9);
 
         } catch (Exception e) {
             throw e;

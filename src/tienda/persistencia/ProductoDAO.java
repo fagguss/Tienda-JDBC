@@ -36,11 +36,11 @@ public final class ProductoDAO extends DAO {
     public void modificarProducto(Producto producto) throws Exception {
         try {
             if (producto == null) {
-                throw new Exception("Debe indicar el nombre del producto que desea modificar");
+                throw new Exception("Debe indicar el codigo del producto que desea modificar, y el nombre");
             }
 
-            String sql = "UPDATE producto SET "
-                    + "codigo = '" + producto.getCodigo() + "' WHERE nombre = '" + producto.getNombre() + "'";
+            String sql = "UPDATE producto "
+                    + "SET nombre = '" + producto.getNombre() + "' WHERE codigo = '" + producto.getCodigo() + "';";
 
             insertarModificarEliminar(sql);
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public final class ProductoDAO extends DAO {
     public Collection<Producto> buscarProductoXPrecioMenor() throws Exception {
         try {
 
-            String sql = "SELECT nombre, precio FROM Producto "
+            String sql = "SELECT nombre, precio FROM producto "
                     + " ORDER BY precio ASC LIMIT 1; ";
 
             consultarBase(sql);
@@ -128,24 +128,31 @@ public final class ProductoDAO extends DAO {
         }
     }
     
-    public Producto buscarProductoXNombre(String nombre) throws Exception {
+    public Collection<Producto> buscarProductoXNombre(String nombre) throws Exception {
         try {
 
-            String sql = "SELECT * FROM Producto "
-                    + " WHERE nombre = '" + nombre + "'";
+            String sql = "SELECT * FROM producto "
+                    + " WHERE nombre = '" + nombre + "';";
 
             consultarBase(sql);
 
             Producto producto = null;
+            Collection<Producto> productos = new ArrayList();
             while (resultado.next()) {
                 producto = new Producto();
                 producto.setCodigo(resultado.getInt(1));
                 producto.setNombre(resultado.getString(2));
+                producto.setPrecio(resultado.getFloat(3));
+                Integer codigo_fabricante = resultado.getInt(4);
+                Fabricante fabricante = fabricanteServicio.buscarFabricanteXCodigo(codigo_fabricante);
+                producto.setFabricante(fabricante);
+                
+                productos.add(producto);
             }
             
             desconectarBase();
   
-            return producto;
+            return productos;
             
         } catch (Exception e) {
             desconectarBase();
@@ -173,20 +180,7 @@ public final class ProductoDAO extends DAO {
                 productos.add(producto);
 
             }
-//REFERENCIA: 
 
-//            Mascota mascota = null;
-//            Collection<Mascota> mascotas = new ArrayList();
-//            while (resultado.next()) {
-//                mascota = new Mascota();
-//                mascota.setId(resultado.getInt(1));
-//                mascota.setApodo(resultado.getString(2));
-//                mascota.setRaza(resultado.getString(3));
-//                Integer idUsuario = resultado.getInt(4);
-//                Usuario usuario = usuarioService.buscarUsuarioPorId(idUsuario);
-//                mascota.setUsuario(usuario);
-//                mascotas.add(mascota);
-//            }
             desconectarBase();
             return productos;
 

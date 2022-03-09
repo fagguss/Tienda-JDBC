@@ -10,14 +10,10 @@ import tienda.entidades.Fabricante;
 public final class FabricanteDAO extends DAO {
 
     
-//    public FabricanteDAO() {
-//    }
-//    
-    
      public void guardarFabricante(Fabricante fabricante) throws Exception {
         try {
             if (fabricante == null) {
-                throw new Exception("Debe indicar el nombre del fabricante");
+                throw new Exception("Debe indicar el nombre del fabricante nuevo");
             }
 
             String sql = "INSERT INTO fabricante (nombre)"
